@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<!-- @author Alex Twomey
+	  @date 9/26/20
+-->
+<html>
+	<head>
+		<title>Alex Twomey - Flag Generator</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto&display=swap" rel="stylesheet">
+		<style>
+        /* Place CSS here */
+		  #myCanv{
+			  border:1px solid black;
+
+		  }
+		  body{
+			  width:50%;
+			  margin:auto;
+			  text-align:center;
+			  	font-family: 'Open Sans', sans-serif;
+				background-color:#ffe6e6;
+		  }
+		  *{
+		  	-webkit-transition: all 1s ease;
+		      -moz-transition: all 1s ease;
+		      -o-transition: all 1s ease;
+				transition: all 1s ease;
+		  }
+	   </style>
+	 <script src="index.js"> </script>
+    </head>
+
+    <body>
+		 <header>
+        <h1>Flag Generator!</h1>
+		  <h2>Automatically generates a flag for you!</h2>
+		 </header>
+
+		 <div id="main">
+
+
+
+		 </div>
+		<footer>
+
+		</footer>
+	</body>
+
+	<script>
+        // JavaScript Here
+///////////////////////////////////////////////////////////////////////////////////
+        // variables
+		  var selection1 = 0;
+		  var selection2 = 0;
+		  var selection3 = 0;
+		  var imglink;
+		  var name = localStorage.getItem("name");
+		  var lastLink = localStorage.getItem("link");
+		  var lastStyle = localStorage.getItem("style");
+		  console.log(name.length);
+		  const div2= document.createElement("div");
+		  const div3=document.createElement("div");
+		  const div4=document.createElement("div");
+		  const div5=document.createElement("div");
+		  const div6=document.createElement("div");
+		  const div0=document.createElement("div");
+		  const div1= document.createElement("div");
+		  //////////////////////////////////////////////////////////////////////////
+		  //localStorage.clear();
+		  //local storage section
+		  if(name=="null" ){
+			  console.log("fire");
+
+			  document.body.append(div0);
+			  const writeName = document.createElement("input");
+			  writeName.type="text";
+			  writeName.id="myWriteName";
+			  writeName.name="myWriteName";
+
+			  const label1= document.createElement("label");
+			  label1.for="myWriteName";
+			  label1.id="myLabel";
+			  label1.innerText="Enter your name here: ";
+
+			  div0.append(label1);
+			  div0.append(writeName);
+
+			  const button = document.createElement("input");
+			  button.type="button";
+			  button.id="myButton";
+			  button.value="Submit";
+
+			  button.onclick="buttonClicked();";
+			  div0.append(button);
+			  document.getElementById("myButton").onclick = function buttonClicked(){
+				  var userName = document.getElementById("myWriteName").value;
+				  localStorage.setItem("name",userName);
+				  document.getElementById("myButton").remove();
+				  document.getElementById('myWriteName').remove();
+				  document.getElementById("myLabel").remove();
+				  const greeting = document.createElement("p");
+				  greeting.id="myGreeting";
+				  greeting.innerText="Hello "+userName;
+				  div0.append(greeting);
+				  div1.id="myDiv1";
+				  document.body.append(div1);
+			  };
+
+		  }//end of if
+		  else{
+			  document.body.append(div0);
+			  const greeting = document.createElement("p");
+			  greeting.id="myGreeting";
+			  greeting.innerText="Hello "+name+", "+localStorage.getItem("style")+", here is the link: "+localStorage.getItem("link");
+			  div0.append(greeting);
+			  div1.id="myDiv1";
+			  document.body.append(div1);
+		  }
+
+		  //first selection
+
+/////////////////////////////////////////////////////////////////////////////////
+		  const select1 = document.createElement("select");
+		  select1.id="mySelect1";
+		  div1.append(select1);
+
+		  const option1 = document.createElement("option");
+		  option1.value =selectInfo.choices[0].key;
+		  option1.textContent = selectInfo.choices[0].description;
+        select1.append(option1);
+
+		  const option2 = document.createElement("option");
+        option2.value = selectInfo.choices[0].option_1;
+        option2.textContent = selectInfo.choices[0].option_1;
+        select1.append(option2);
+
+		  const option3 = document.createElement("option");
+        option3.value = selectInfo.choices[0].option_2;
+        option3.textContent = selectInfo.choices[0].option_2;
+        select1.append(option3);
+
+		  const select2 = document.createElement("select");
+		  const select3 = document.createElement("select");
+//////////////////////////////////////////////////////////////////////////////
+//Event listeners
+		  select1.addEventListener("change", () => {
+		  	 currentSelection = select1.value;
+			 selection1 = select1.value;
+		  	 console.log(currentSelection);
+			 try{
+				 document.getElementById("myOption4").remove();
+				 document.getElementById("myOption5").remove();
+				 document.getElementById("myOption6").remove();
+				 document.getElementById("myOption7").remove();
+				 document.getElementById("myOption8").remove();
+				 document.getElementById("myOption9").remove();
+				 document.getElementById("myDiv2").remove();
+   			 document.getElementById("myDiv3").remove();
+   			 document.getElementById("myDiv4").remove();
+   			 document.getElementById("myDiv5").remove();
+				 document.getElementById("myDiv6").remove();
+
+			 }catch(err){
+				 console.log(err);
+			 }
+
+
+
+
+		  	 selectInfo.choices.forEach(element => {
+		  		  if (element.key == select1.value) {
+		  				console.log(element);
+
+						const div2= document.createElement("div");
+			 		   div2.id="myDiv2";
+			 		   document.body.append(div2);
+
+						select2.id="mySelect2";
+						div2.append(select2);
+
+						const option4 = document.createElement("option");
+						option4.id="myOption4";
+			 		   option4.value = element.option_1;
+			 		   option4.textContent = element.description;
+			         select2.append(option4);
+
+						const option5 = document.createElement("option");
+						option5.id="myOption5";
+			         option5.value = element.option_1;
+			         option5.textContent = element.option_1;
+			         select2.append(option5);
+
+						const option6 = document.createElement("option");
+						option6.id="myOption6";
+			         option6.value = element.option_2;
+			         option6.textContent = element.option_2;
+			         select2.append(option6);
+
+		  		  }
+		  	 });
+
+		  });
+//select 2 listener
+		  select2.addEventListener("change", () => {
+			  currentSelection = select2.value;
+			  selection2 = select2.value;
+			  console.log(currentSelection);
+			  try{
+				 document.getElementById("myOption7").remove();
+				 document.getElementById("myOption8").remove();
+				 document.getElementById("myOption9").remove();
+    			 document.getElementById("myDiv3").remove();
+    			 document.getElementById("myDiv4").remove();
+    			 document.getElementById("myDiv5").remove();
+				 document.getElementById("myDiv6").remove();
+
+ 			 }catch(err){
+ 				 console.log(err);
+ 			 }
+
+			  selectInfo.choices.forEach(element => {
+					if (element.key == select2.value) {
+						 console.log(element);
+
+						 const div3= document.createElement("div");
+						 div3.id="myDiv3";
+						 document.body.append(div3);
+
+
+						 select3.id="mySelect3";
+						 div3.append(select3);
+
+						 const option7 = document.createElement("option");
+						 option7.id="myOption7";
+						 option7.value = element.option_1;
+						 option7.textContent = element.description;
+						 select3.append(option7);
+
+						 const option8 = document.createElement("option");
+						 option8.id="myOption8";
+						 option8.value = element.option_1;
+						 option8.textContent = element.option_1;
+						 select3.append(option8);
+
+						 const option9 = document.createElement("option");
+						 option9.id="myOption9";
+						 option9.value = element.option_2;
+						 option9.textContent = element.option_2;
+						 select3.append(option9);
+
+
+					}
+			  });
+
+		});
+//select 3 listener
+		select3.addEventListener("change", () => {
+		currentSelection = select3.value;
+		selection3 = select3.value;
+		console.log(currentSelection);
+		try{
+		  document.getElementById("myDiv4").remove();
+		  document.getElementById("myDiv5").remove();
+		  document.getElementById("myDiv6").remove();
+
+	  }catch(err){
+		  console.log(err);
+	  }
+		generatePic();
+
+	 });
+//////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+//generate the image of the flag dynamically using HTML canvas.
+		function generatePic(){
+			console.log("were here");
+			const canv = document.createElement("canvas");
+			canv.id="myCanv";
+			canv.width="400";
+			canv.height="225";
+			const div4 = document.createElement("div");
+			div4.id="myDiv4";
+
+			document.body.append(div4);
+			div4.append(canv);
+
+			c = document.getElementById("myCanv");
+			var ctx = c.getContext("2d");
+			ctx.fillStyle="white";
+			ctx.moveTo(0,0);
+			ctx.fillRect(0,0,400,225);
+			if(selection1=="Middle Split"){
+				drawMiddle();
+			}else{
+				drawDiagonal();
+			}
+			if(selection3=="Circle"){
+				drawCircle();
+			}else if(selection3=="Square"){
+				drawSquare();
+			}else if(selection3=="Triangle"){
+				drawTriangle();
+			}else if(selection3=="Diamond"){
+				drawDiamond();
+			}else if(selection3=="Oval(horizontal)"){
+				drawHoval();
+			}else if(selection3=="Triangle(upside down)"){
+				drawUtriangle();
+			}else if(selection3=="Oval(verticle)"){
+				drawVoval();
+			}else {
+				drawRect();
+			}
+
+			//displays the style of flag the user generated in text
+			const div5 = document.createElement("div");
+			div5.id="myDiv5";
+			document.body.append(div5);
+			const textArea = document.createElement("p");
+			textArea.innerText = "The flag you generated has a "+selection1+" background, with a "+selection2+" color and a "+selection3+" in its center";
+			div5.append(textArea);
+			var textstuff = "The last flag you generated had a "+selection1+" background, with a "+selection2+" color and a "+selection3+" in its center";
+			localStorage.setItem("style",textstuff);
+
+			upload();
+///////////////////////////////////////////////////////////////////////////////
+//Drawing methods for each flag element. the backgrounds and the foreground objects.
+			function drawDiagonal(){
+					console.log(selection2.toLowerCase());
+					ctx.moveTo(0,0);
+
+					ctx.beginPath();
+					ctx.lineTo(400,225);
+					ctx.lineTo(0,225);
+					ctx.lineTo(0,0);
+					ctx.closePath();
+
+					ctx.fillStyle=selection2;
+					ctx.fill();
+			}
+
+			function drawMiddle(){
+				ctx.fillStyle=selection2;
+				ctx.moveTo(0,112);
+				ctx.fillRect(0,113,400,225);
+			}
+
+			function drawCircle(){
+				ctx.fillStyle="black";
+				ctx.beginPath();
+				ctx.arc(200, 114, 80, 0, 2 * Math.PI);
+				ctx.fill();
+			}
+
+			function drawSquare(){
+				ctx.fillStyle="black";
+				ctx.beginPath();
+				ctx.fillRect(120,40,150,150);
+			}
+
+			function drawTriangle(){
+				ctx.fillStyle="black";
+				ctx.moveTo(200,40);
+				ctx.beginPath();
+				ctx.lineTo(300,170);
+				ctx.lineTo(100,170);
+				ctx.lineTo(200,40);
+				ctx.fill();
+			}
+
+			function drawDiamond(){
+				ctx.fillStyle="black";
+				ctx.moveTo(200,40);
+				ctx.beginPath();
+				ctx.lineTo(300,105);
+				ctx.lineTo(200,170);
+				ctx.lineTo(100,105);
+				ctx.lineTo(200,40);
+				ctx.fill();
+			}
+
+			function drawHoval(){
+				ctx.fillStyle="black";
+				ctx.moveTo(140,114);
+				ctx.scale(2,1);
+				ctx.beginPath();
+				ctx.arc(100, 114, 60, 0, 2 * Math.PI);
+				ctx.restore();
+				ctx.fill();
+			}
+
+			function drawUtriangle(){
+				ctx.fillStyle="black";
+				ctx.moveTo(200,1700);
+				ctx.beginPath();
+				ctx.lineTo(300,40);
+				ctx.lineTo(100,40);
+				ctx.lineTo(200,170);
+				ctx.fill();
+			}
+
+			function drawVoval(){
+				ctx.fillStyle="black";
+				ctx.moveTo(140,114);
+				ctx.scale(1,2);
+				ctx.beginPath();
+				ctx.arc(200, 55, 40, 0, 2 * Math.PI);
+				ctx.restore();
+				ctx.fill();
+			}
+
+			function drawRect(){
+				ctx.fillStyle="black";
+				ctx.beginPath();
+				ctx.fillRect(100,40,200,150);
+			}
+		}
+
+		/////////////////////////////////////////////////////////////////////////
+		//Function to upload generated picture to imgur and receive the URL back.
+		function upload(){
+
+			var apiKey = "6933e35cc932981";
+			var imgout = c.toDataURL();
+			var dataout = imgout.split(',')[1];
+			var formData = new FormData();
+
+			formData.append("image",dataout);
+
+			var xhr = new XMLHttpRequest();
+			xhr.open("POST","https://api.imgur.com/3/image")
+			xhr.setRequestHeader("Authorization", "Client-ID 6933e35cc932981");
+			xhr.onload = function(){
+				var link1 = JSON.parse(xhr.responseText).data.link;
+				imglink = link1;
+				console.log(imglink);
+				const div6= document.createElement("div");
+				div6.id="myDiv6";
+				document.body.append(div6);
+
+				const link = document.createElement("p");
+				div6.append(link);
+				link.innerText="Link to generated flag: ";
+				const clickL = document.createElement("a");
+				clickL.href=imglink;
+				clickL.innerText="Link";
+				div6.append(clickL);
+				localStorage.setItem("link",imglink);
+			}
+			xhr.send(formData);
+		}
+   </script>
+</html>

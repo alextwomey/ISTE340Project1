@@ -1,0 +1,29 @@
+Alex Twomey 
+Client Programming ISTE 340
+
+
+********************************************
+
+In this project there are two aspects that I believe 
+are examples of going beyond the project requirement
+these are: 
+
+Using HTML canvas to generate a picture of a flag dynamicaly. 
+This means that there are no pre created flag pictures 
+and the ones that the user ends up seeing are all generated live 
+using my generatePic() function. If a user were to switch around the 
+order of the choices in the index.js file then there would be different 
+flag combinations available to the user to create. 
+
+The second part that I believe is worthy of note is the ability to 
+take this automatically generated flag and convert it into a
+dataURL and upload this image to the website imgur.com.
+This is accomplished using my upload() method where I send a 
+XMLHttpRequest to interface with imgurs image upload API. I then recieve the 
+link if the upload was succesfull and display that on the page for the user to 
+remotely link to if they want. This link is stored inside the localStorage 
+and the next time they use the website the site will remember the link of 
+the last image they had created. 
+
+
+Sorry for uploading this project late. 
